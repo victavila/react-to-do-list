@@ -32,7 +32,9 @@ const Sidebar = () => {
         <h3>Projects</h3>
         <ul>
           {projects.map(project => (
-            <ProjectLink key={project.id} {...project} />
+            <Link key={project.id} to={`/${project.id}`}>
+              <ProjectLink {...project} />
+            </Link>
           ))}
         </ul>
       </div>

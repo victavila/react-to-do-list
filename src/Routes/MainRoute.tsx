@@ -12,7 +12,7 @@ const MainRoute = () => {
       <Route path="/today" element={<Today />} />
       <Route path="/upcoming" element={<Upcoming />} />
       <Route path="/important" element={<Important />} />
-      <Route path="/:projectId" element={<Project />} />
+      <Route path="/:id" element={<Project />} />
     </Routes>
   )
 }

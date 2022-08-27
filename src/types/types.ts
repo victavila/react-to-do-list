@@ -1,4 +1,4 @@
-//  export interface Todo {
+//  export interface TodoProps {
 //   id: string;
 //   text: string;
 //   completed: boolean;
@@ -8,7 +8,12 @@
 //   priority: boolean;
 // };
 
-export interface Todo {
+export interface TodoProps {
   id: string;
   text: string;
+}
+
+export interface ProjectProps {
+  id: string;
+  name: string;
 }

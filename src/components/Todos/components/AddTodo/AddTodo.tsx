@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
 import { addTodo } from "../../todoSlice";
 
@@ -10,13 +10,12 @@ const AddTodo = ({ handleClick }: ButtonProperties) => {
   const dispatch = useAppDispatch();
   const [text, setText] = useState("");
 
-  const handleChange = (e: { target: HTMLInputElement }) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setText(e.target.value);
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    
     if (!text.trim()) {
       return;
     };

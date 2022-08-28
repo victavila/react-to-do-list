@@ -1,13 +1,17 @@
 import { useState } from "react"
 import AddTodo from "./components/AddTodo/AddTodo";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import AddTodoButton from "./components/AddTodoButton/AddTodoButton"
 import TodoItem from "./components/TodoItem/TodoItem";
 import { toggleTodo } from "./todoSlice";
+import { TodoProps } from "../../types/types";
 
-const Todos = () => {
+interface TodosProps {
+  todos: TodoProps[]
+}
+
+const Todos = ({ todos }: TodosProps) => {
   const dispatch = useAppDispatch();
-  const todos = useAppSelector(state => state.todos);
   const [visibleForm, setVisibleForm] = useState(false);
 
   const toggleFormVisibility = () => {

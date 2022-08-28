@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TodoProps } from '../../types/types';
+import { Priority, TodoProps } from '../../types/types';
 import {v4 as  uuid } from 'uuid';
 
 const initialState: TodoProps[] = [];
@@ -7,6 +7,8 @@ const initialState: TodoProps[] = [];
 interface NewTodoProps {
   text: string,
   projectId: string,
+  isImportant: boolean,
+  priority: Priority,
 }
 
 const todoSlice = createSlice({
@@ -19,6 +21,8 @@ const todoSlice = createSlice({
         text: action.payload.text,
         completed: false,
         projectId: action.payload.projectId,
+        isImportant: action.payload.isImportant,
+        priority: action.payload.priority
       };
       state.push(newTodo);
     },
@@ -38,6 +42,8 @@ const todoSlice = createSlice({
       if (todo) {
         todo.text = action.payload.text;
         todo.projectId = action.payload.projectId;
+        todo.isImportant = action.payload.isImportant;
+        todo.priority = action.payload.priority;
       }
     }
   }

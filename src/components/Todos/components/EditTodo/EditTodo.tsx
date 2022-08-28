@@ -1,6 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { updateTodo } from "../../todoSlice";
+import { FaTag, FaRegFlag, FaFlag } from "react-icons/fa";
+import { Priority } from "../../../../types/types";
 
 interface EditTodoProps {
   toggleVisibility: () => void,
@@ -13,6 +15,8 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
   const projects = [...useAppSelector(state => state.projects)]
   const [newText, setNewText] = useState(todo.text);
   const [newProjectId, setNewProjectId] = useState(todo.projectId);
+  const [isImportant, setIsImportant] = useState(todo.isImportant);
+  const [priority, setPriority] = useState(todo.priority);
 
   projects.push({name: "Inbox", id: "inbox"});
 
@@ -26,7 +30,7 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
       return;
     };
     toggleVisibility();
-    const newTodo = {...todo, text: newText, projectId: newProjectId};
+    const newTodo = {...todo, text: newText, projectId: newProjectId, isImportant, priority};
     dispatch(updateTodo(newTodo));
   };
 
@@ -37,6 +41,18 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setNewProjectId(e.target.value);
   }
+
+  const handleImportanceChange = () => {
+    setIsImportant(!isImportant);
+  }
+
+  const togglePriority = () => {
+    if (priority === Priority.LOW) {
+      setPriority(Priority.NONE);
+    } else {
+      setPriority(priority + 1);
+    }
+  }
   
   return (
     <form onSubmit={handleSubmit}>
@@ -46,8 +62,25 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
           <option value={project.id} key={project.id}>{project.name}</option>
         ))}
       </select>
-      <button type="submit">Save</button>
-      <button onClick={handleCancel}>Cancel</button>
+      <div className="form-buttons">
+        <button type="submit">Save</button>
+        <button onClick={handleCancel}>Cancel</button>
+      </div>
+      <div className="form-icons">
+        <FaTag
+        onClick={handleImportanceChange}
+        style={{color: isImportant ? "red" : "#222"}}
+        />
+        {priority === Priority.NONE ? 
+        <FaRegFlag onClick={togglePriority} /> :
+        <FaFlag
+        onClick={togglePriority} 
+        style={{color: priority === Priority.HIGH ? "red" 
+        : priority === Priority.MEDIUM ? "orange"
+        : "green"}}
+        /> 
+        }
+      </div>      
     </form>
   )
 }

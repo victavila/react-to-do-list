@@ -4,15 +4,21 @@ import {v4 as  uuid } from 'uuid';
 
 const initialState: TodoProps[] = [];
 
+interface NewTodoProps {
+  text: string,
+  projectId: string,
+}
+
 const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodo(state, action: PayloadAction<string>) {
+    addTodo(state, action: PayloadAction<NewTodoProps>) {
       const newTodo: TodoProps = {
         id: uuid(),
-        text: action.payload,
+        text: action.payload.text,
         completed: false,
+        projectId: action.payload.projectId,
       };
       state.push(newTodo);
     },
@@ -31,6 +37,7 @@ const todoSlice = createSlice({
 
       if (todo) {
         todo.text = action.payload.text;
+        todo.projectId = action.payload.projectId;
       }
     }
   }

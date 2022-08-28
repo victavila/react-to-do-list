@@ -22,10 +22,13 @@ const todoSlice = createSlice({
       if (todo) {
         todo.completed = !todo.completed;
       }
+    },
+    deleteTodo(state, action: PayloadAction<string>) {
+      state.splice(state.findIndex(todo => todo.id === action.payload), 1);
     }
   }
 })
 
-export const { addTodo, toggleTodo } = todoSlice.actions;
+export const { addTodo, toggleTodo, deleteTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

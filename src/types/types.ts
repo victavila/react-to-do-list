@@ -9,11 +9,12 @@
 // };
 
 export interface TodoProps {
-  id: string;
-  text: string;
-}
+  id: string,
+  text: string,
+  completed: boolean,
+};
 
 export interface ProjectProps {
-  id: string;
-  name: string;
-}
+  id: string,
+  name: string,
+};

@@ -1,10 +1,12 @@
 import { useState } from "react"
 import AddTodo from "./components/AddTodo/AddTodo";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import AddTodoButton from "./components/AddTodoButton/AddTodoButton"
 import TodoItem from "./components/TodoItem/TodoItem";
+import { toggleTodo } from "./todoSlice";
 
 const Todos = () => {
+  const dispatch = useAppDispatch();
   const todos = useAppSelector(state => state.todos);
   const [visibleForm, setVisibleForm] = useState(false);
 
@@ -20,6 +22,7 @@ const Todos = () => {
           <TodoItem 
           key={todo.id}
           {...todo}
+          onClick={() => dispatch(toggleTodo(todo))}
           />
         ))}
       </ul>

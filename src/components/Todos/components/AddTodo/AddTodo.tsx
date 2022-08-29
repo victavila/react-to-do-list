@@ -5,10 +5,11 @@ import { FaTag, FaRegFlag, FaFlag } from "react-icons/fa";
 import { Priority } from "../../../../types/types";
 
 interface ButtonProperties {
-  handleClick: () => void;
+  handleClick: () => void,
+  initialDate: string
 }
 
-const AddTodo = ({ handleClick }: ButtonProperties) => {
+const AddTodo = ({ handleClick, initialDate }: ButtonProperties) => {
   const dispatch = useAppDispatch();
   const projects = [...useAppSelector(state => state.projects)];
   const inboxProject = {name: "Inbox", id: "inbox"};
@@ -16,7 +17,7 @@ const AddTodo = ({ handleClick }: ButtonProperties) => {
   const [projectId, setProjectId] = useState("inbox");
   const [isImportant, setIsImportant] = useState(false);
   const [priority, setPriority] = useState<Priority>(Priority.NONE);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(initialDate);
 
   projects.push(inboxProject);
 
@@ -67,7 +68,7 @@ const AddTodo = ({ handleClick }: ButtonProperties) => {
           <option value={project.id} key={project.id}>{project.name}</option>
         ))}
       </select>
-      <input type="date" onChange={handleDateChange} />
+      <input type="date" onChange={handleDateChange} value={date} />
       <div className="form-buttons">
         <button type="submit">Add Todo</button>
         <button onClick={handleCancel}>Cancel</button>

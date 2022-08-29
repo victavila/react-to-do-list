@@ -11,7 +11,7 @@ const Project = () => {
   return (
     <div className="Project">
       <h2>{projectName}</h2>
-      <Todos todos={visibleTodos} />
+      <Todos todos={visibleTodos} date="" />
     </div>
   )
 }

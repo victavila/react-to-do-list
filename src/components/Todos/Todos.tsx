@@ -7,10 +7,11 @@ import { toggleTodo } from "./todoSlice";
 import { TodoProps } from "../../types/types";
 
 interface TodosProps {
-  todos: TodoProps[]
+  todos: TodoProps[],
+  date: string
 }
 
-const Todos = ({ todos }: TodosProps) => {
+const Todos = ({ todos, date }: TodosProps) => {
   const dispatch = useAppDispatch();
   const [visibleForm, setVisibleForm] = useState(false);
 
@@ -30,7 +31,7 @@ const Todos = ({ todos }: TodosProps) => {
           />
         ))}
       </ul>
-      {visibleForm ? <AddTodo handleClick={toggleFormVisibility} />:<AddTodoButton handleClick={toggleFormVisibility} />}
+      {visibleForm ? <AddTodo handleClick={toggleFormVisibility} initialDate={date}  />:<AddTodoButton handleClick={toggleFormVisibility} />}
     </div>
   )
 }

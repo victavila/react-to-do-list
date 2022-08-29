@@ -15,6 +15,7 @@ export interface TodoProps {
   projectId: string,
   isImportant: boolean,
   priority: Priority,
+  date: string,
 };
 
 export interface ProjectProps {

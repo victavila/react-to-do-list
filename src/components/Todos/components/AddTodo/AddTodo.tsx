@@ -16,6 +16,7 @@ const AddTodo = ({ handleClick }: ButtonProperties) => {
   const [projectId, setProjectId] = useState("inbox");
   const [isImportant, setIsImportant] = useState(false);
   const [priority, setPriority] = useState<Priority>(Priority.NONE);
+  const [date, setDate] = useState("");
 
   projects.push(inboxProject);
 
@@ -28,7 +29,7 @@ const AddTodo = ({ handleClick }: ButtonProperties) => {
     if (!text.trim()) {
       return;
     };
-    dispatch(addTodo({text, projectId, isImportant, priority}));
+    dispatch(addTodo({text, projectId, isImportant, priority, date}));
     setText("");
     handleClick();
   }
@@ -53,6 +54,10 @@ const AddTodo = ({ handleClick }: ButtonProperties) => {
       setPriority(priority + 1);
     }
   }
+
+  const handleDateChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setDate(e.target.value);
+  }
   
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
@@ -62,6 +67,7 @@ const AddTodo = ({ handleClick }: ButtonProperties) => {
           <option value={project.id} key={project.id}>{project.name}</option>
         ))}
       </select>
+      <input type="date" onChange={handleDateChange} />
       <div className="form-buttons">
         <button type="submit">Add Todo</button>
         <button onClick={handleCancel}>Cancel</button>

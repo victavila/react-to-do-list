@@ -9,6 +9,7 @@ interface NewTodoProps {
   projectId: string,
   isImportant: boolean,
   priority: Priority,
+  date: string,
 }
 
 const todoSlice = createSlice({
@@ -22,7 +23,8 @@ const todoSlice = createSlice({
         completed: false,
         projectId: action.payload.projectId,
         isImportant: action.payload.isImportant,
-        priority: action.payload.priority
+        priority: action.payload.priority,
+        date: action.payload.date,
       };
       state.push(newTodo);
     },
@@ -44,6 +46,7 @@ const todoSlice = createSlice({
         todo.projectId = action.payload.projectId;
         todo.isImportant = action.payload.isImportant;
         todo.priority = action.payload.priority;
+        todo.date = action.payload.date;
       }
     }
   }

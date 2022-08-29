@@ -17,6 +17,7 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
   const [newProjectId, setNewProjectId] = useState(todo.projectId);
   const [isImportant, setIsImportant] = useState(todo.isImportant);
   const [priority, setPriority] = useState(todo.priority);
+  const [date, setDate] = useState(todo.date);
 
   projects.push({name: "Inbox", id: "inbox"});
 
@@ -30,7 +31,7 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
       return;
     };
     toggleVisibility();
-    const newTodo = {...todo, text: newText, projectId: newProjectId, isImportant, priority};
+    const newTodo = {...todo, text: newText, projectId: newProjectId, isImportant, priority, date};
     dispatch(updateTodo(newTodo));
   };
 
@@ -53,6 +54,10 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
       setPriority(priority + 1);
     }
   }
+
+  const handleDateChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setDate(e.target.value);
+  }
   
   return (
     <form onSubmit={handleSubmit}>
@@ -62,6 +67,7 @@ const EditTodo = ({toggleVisibility, id}: EditTodoProps) => {
           <option value={project.id} key={project.id}>{project.name}</option>
         ))}
       </select>
+      <input type="date" onChange={handleDateChange} value={date} />
       <div className="form-buttons">
         <button type="submit">Save</button>
         <button onClick={handleCancel}>Cancel</button>

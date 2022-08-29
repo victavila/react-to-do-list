@@ -13,16 +13,22 @@ const months = [
   "Dec"
 ];
 
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+]
+
 export const dateToYearMonthDay = (date: Date) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
+  let day: string | number = date.getDate();
+  let month: string | number = date.getMonth() + 1;
   const year = date.getFullYear();
-  if (day < 10) {
-    return `${year}-${month}-0${day}`;
-  } 
-  else if (month < 10) {
-    return `${year}-0${month}-${day}`;
-  }
+  if (day < 10) {day = `0${day}`;}
+  if (month < 10) {month = `0${month}`;}
   return `${year}-${month}-${day}`;
 }
 
@@ -31,4 +37,9 @@ export const dateToMonthDay = (date: string) => {
   const month = months[dateObj.getMonth()];
   const day = dateObj.getDate();
   return `${month} ${day}`;
+}
+
+export const dateToDay = (date: Date) => {
+  const day = days[date.getDay()];
+  return day;
 }

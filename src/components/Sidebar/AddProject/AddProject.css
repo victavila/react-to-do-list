@@ -1,0 +1,59 @@
+.add-project-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -250px;
+  border-radius: 10px;
+  width: 450px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.add-project-container > div {
+  padding: 1rem;
+  border-bottom: 1px solid #e4e6e6;
+}
+
+label > h4 {
+  padding: 1rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+.project-form > input {
+  margin: 1rem;
+  width: 80%;
+  font-size: 1rem;
+  padding: 5px;
+  border: 1px solid #c8c8c8;
+  border-radius: 5px;
+}
+
+.project-form > .button-container {
+  border-top: 1px solid #e4e6e6;
+  padding: 1rem;
+}
+
+.add-button {
+  background-color: #db4c3f;
+  color: #fff;
+  border: 1px solid #db4c3f;
+  border-radius: 5px;
+  padding: 7px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #fff;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+span {
+  padding-right: 10px;
+}

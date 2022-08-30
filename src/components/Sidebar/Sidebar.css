@@ -1,0 +1,91 @@
+.sidebar {
+  height: 100vh;
+  width: 100%;
+  background-color: #f9fafa;
+  border-right: 1px solid #e4e6e6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.links {
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-right: .5rem;
+}
+
+:is(a:link, a:visited, a:hover, a:active)  {
+  text-decoration: none;
+  color: #202020;
+}
+
+a > li {
+  padding: .5rem;
+}
+
+a:hover > li {
+  border-radius: .325rem;
+  background-color: #ececec;
+}
+
+li {
+  list-style: none;
+}
+
+.inbox-icon {
+  color: #3232fa
+}
+
+.today-icon {
+  color: #008000;
+}
+
+.upcoming-icon {
+  color: #800080;
+}
+
+.important-icon {
+  color: #ff0000;
+}
+
+.chevron-icon {
+  color: #202020;
+  font-size: 12px;
+}
+
+.project-icon {
+  color: #696868;
+  font-size: 10px;
+}
+
+.nav-projects {
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-right: .5rem;
+}
+
+.nav-project-header {
+  cursor: pointer;
+  padding: .5rem;
+}
+
+.nav-footer {
+  width: 100%;
+  padding-bottom: .5rem;
+  border-top: 1px solid #e4e6e6;
+}
+
+.add-project {
+  font-size: 1rem;
+  border: none;
+  background-color: #f9fafa;
+  width: 100%;
+  text-align: left;
+  padding-left: 3rem;
+  padding-top: .5rem;
+  cursor: pointer;
+}
+
+.plus {
+  font-size: 1.2rem;
+}

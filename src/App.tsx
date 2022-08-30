@@ -1,13 +1,13 @@
 import React from 'react';
-import Main from './components/Main/Main';
 import Sidebar from './components/Sidebar/Sidebar';
 import "./App.css";
+import MainRoute from './Routes/MainRoute';
 
 function App() {
   return (
     <div className="App">
       <Sidebar />
-      <Main />
+      <MainRoute />
     </div>
   );
 }

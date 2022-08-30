@@ -7,13 +7,15 @@ import Upcoming from '../components/Upcoming/Upcoming';
 
 const MainRoute = () => {
   return (
-    <Routes>
-      <Route path="/" element={< Inbox />} />
-      <Route path="/today" element={<Today />} />
-      <Route path="/upcoming" element={<Upcoming />} />
-      <Route path="/important" element={<Important />} />
-      <Route path="/:id" element={<Project />} />
-    </Routes>
+    <main className='main'>
+      <Routes>
+        <Route path="/" element={< Inbox />} />
+        <Route path="/today" element={<Today />} />
+        <Route path="/upcoming" element={<Upcoming />} />
+        <Route path="/important" element={<Important />} />
+        <Route path="/:id" element={<Project />} />
+      </Routes>
+    </main>
   )
 }
 

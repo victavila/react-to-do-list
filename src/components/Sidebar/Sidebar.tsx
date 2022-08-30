@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import AddProject from "./AddProject/AddProject";
-import { FaInbox, FaRegCalendar, FaRegCalendarAlt, FaTag, FaChevronDown, FaChevronRight, FaCircle, FaPlus } from "react-icons/fa";
+import { FaInbox, FaRegCalendar, FaRegCalendarAlt, FaTag, FaChevronDown, FaChevronRight, FaCircle } from "react-icons/fa";
 import "./Sidebar.css"
 
 const Sidebar = () => {

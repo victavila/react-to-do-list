@@ -8,7 +8,7 @@ const Inbox = () => {
   return (
     <div className="inbox">
       <h2>Inbox</h2>
-      <Todos todos={visibleTodos} date="" disable={false} />
+      <Todos todos={visibleTodos} date="" disable={false} project="inbox" />
     </div>
   )
 }

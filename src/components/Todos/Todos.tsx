@@ -9,10 +9,11 @@ import { TodoProps } from "../../types/types";
 interface TodosProps {
   todos: TodoProps[],
   date: string,
-  disable: boolean
+  disable: boolean,
+  project: string,
 }
 
-const Todos = ({ todos, date, disable }: TodosProps) => {
+const Todos = ({ todos, date, disable, project }: TodosProps) => {
   const dispatch = useAppDispatch();
   const [visibleForm, setVisibleForm] = useState(false);
 
@@ -32,7 +33,7 @@ const Todos = ({ todos, date, disable }: TodosProps) => {
           />
         ))}
       </ul>
-      {disable ? <></> : visibleForm ? <AddTodo handleClick={toggleFormVisibility} initialDate={date}  />:<AddTodoButton handleClick={toggleFormVisibility} />}
+      {disable ? <></> : visibleForm ? <AddTodo handleClick={toggleFormVisibility} initialDate={date} project={project}  />:<AddTodoButton handleClick={toggleFormVisibility} />}
     </div>
   )
 }

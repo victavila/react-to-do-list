@@ -6,15 +6,16 @@ import { Priority } from "../../../../types/types";
 
 interface ButtonProperties {
   handleClick: () => void,
-  initialDate: string
+  initialDate: string,
+  project: string,
 }
 
-const AddTodo = ({ handleClick, initialDate }: ButtonProperties) => {
+const AddTodo = ({ handleClick, initialDate, project }: ButtonProperties) => {
   const dispatch = useAppDispatch();
   const projects = [...useAppSelector(state => state.projects)];
   const inboxProject = {name: "Inbox", id: "inbox"};
   const [text, setText] = useState("");
-  const [projectId, setProjectId] = useState("inbox");
+  const [projectId, setProjectId] = useState(project);
   const [isImportant, setIsImportant] = useState(false);
   const [priority, setPriority] = useState<Priority>(Priority.NONE);
   const [date, setDate] = useState(initialDate);

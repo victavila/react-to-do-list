@@ -8,7 +8,7 @@ const Important = () => {
   return (
     <div className="important">
       <h2>Important</h2>
-      <Todos todos={visibleTodos} date="" />
+      <Todos todos={visibleTodos} date="" disable={true} />
     </div>
   )
 }

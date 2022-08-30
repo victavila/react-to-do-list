@@ -15,7 +15,7 @@ const DaySection = ({ day }: DayProps) => {
   return (
     <div className="day-section">
       <h3 className="day-heading">{day.dayWeek} {day.monthDay}</h3>
-      <Todos todos={todos} date={day.dateString} />
+      <Todos todos={todos} date={day.dateString} disable={false} />
     </div>
   )
 }

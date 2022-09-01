@@ -1,0 +1,9 @@
+.day-section {
+  max-width: 1000px;
+  padding-bottom: 2rem;
+}
+
+.day-section > h3 {
+  border-bottom: 1px solid #f1f1f1;
+  padding: .5rem;
+}

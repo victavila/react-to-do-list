@@ -1,0 +1,13 @@
+.add-todo {
+  font-size: 1rem;
+  border: none;
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  padding-top: .5rem;
+  cursor: pointer;
+}
+
+.add-todo:hover {
+  color: red;
+}

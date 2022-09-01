@@ -1,5 +1,6 @@
 import { useAppSelector } from "../../app/hooks";
 import Todos from "../Todos/Todos";
+import "./DaySection.css";
 
 interface DayProps {
   day: {

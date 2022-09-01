@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import AddProject from "./AddProject/AddProject";
 import { FaInbox, FaRegCalendar, FaRegCalendarAlt, FaTag, FaChevronDown, FaChevronRight, FaCircle } from "react-icons/fa";
+import { VscAdd } from "react-icons/vsc";
 import "./Sidebar.css"
 
 const Sidebar = () => {
@@ -75,7 +76,7 @@ const Sidebar = () => {
         
       <div className="nav-footer">
         {formVisibility ? <AddProject toggleVisibility={toggleVisibility} />: <></>}
-        <button className="add-project" onClick={toggleVisibility}><span className="plus">+</span> Add Project</button>
+        <button className="add-project" onClick={toggleVisibility}><span className="plus"><VscAdd /></span> Add Project</button>
       </div>
     </nav>
   )

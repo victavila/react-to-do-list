@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { addTodo } from "../../todoSlice";
 import { FaTag, FaRegFlag, FaFlag } from "react-icons/fa";
 import { Priority } from "../../../../types/types";
+import "./AddTodo.css";
 
 interface ButtonProperties {
   handleClick: () => void,
@@ -62,34 +63,47 @@ const AddTodo = ({ handleClick, initialDate, project }: ButtonProperties) => {
   }
   
   return (
-    <form className="todo-form" onSubmit={handleSubmit}>
-      <input value={text} onChange={handleChange} />
-      <select className="project-select" onChange={handleSelectChange} value={projectId}>
-        {projects.map(project => (
-          <option value={project.id} key={project.id}>{project.name}</option>
-        ))}
-      </select>
-      <input type="date" onChange={handleDateChange} value={date} />
-      <div className="form-buttons">
-        <button type="submit">Add Todo</button>
-        <button onClick={handleCancel}>Cancel</button>
+    <div className="add-todo-container">
+      <div>
+        <h3>Add Todo</h3>
       </div>
-      <div className="form-icons">
-        <FaTag 
-        onClick={handleImportanceChange}
-        style={{color: isImportant ? "red" : "#222"}}
-        />
-        {priority === Priority.NONE ? 
-        <FaRegFlag onClick={togglePriority} /> :
-        <FaFlag
-        onClick={togglePriority} 
-        style={{color: priority === Priority.HIGH ? "red" 
-        : priority === Priority.MEDIUM ? "orange"
-        : "green"}}
-        /> 
-        }
-      </div>
-    </form>
+      <form className="todo-form" onSubmit={handleSubmit}>
+        <div className="todo-row">
+          <input type="text" placeholder="Todo Name" value={text} onChange={handleChange} />
+        </div>
+        <div className="todo-row  middle">
+          <select className="project-select" onChange={handleSelectChange} value={projectId}>
+            {projects.map(project => (
+              <option value={project.id} key={project.id}>{project.name}</option>
+            ))}
+          </select>
+          <input type="date" onChange={handleDateChange} value={date} />
+        </div>
+        <div className="todo-row bottom">
+          <div className="form-buttons">
+            <button className="add-button" type="submit">Add</button>
+            <button className="cancel-button" onClick={handleCancel}>Cancel</button>
+          </div>
+          <div className="form-icons">
+            <FaTag
+            className="tag-icon" 
+            onClick={handleImportanceChange}
+            style={{color: isImportant ? "red" : "#222"}}
+            />
+            {priority === Priority.NONE ? 
+            <FaRegFlag className="flag-icon" onClick={togglePriority} /> :
+            <FaFlag
+            className="flag-icon"
+            onClick={togglePriority} 
+            style={{color: priority === Priority.HIGH ? "red" 
+            : priority === Priority.MEDIUM ? "orange"
+            : "green"}}
+            /> 
+            }
+          </div>
+        </div>
+      </form>
+    </div>
   )
 }
 

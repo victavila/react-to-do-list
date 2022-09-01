@@ -86,6 +86,10 @@ li {
   cursor: pointer;
 }
 
+.add-project:hover {
+  color: red;
+}
+
 .plus {
-  font-size: 1.2rem;
+  font-size: .8rem;
 }

@@ -1,0 +1,8 @@
+.project {
+  padding: 4rem 5rem;
+}
+
+.project > h2 {
+  font-size: 1.5rem;
+  padding-bottom: 2rem;
+}

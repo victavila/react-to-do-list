@@ -1,0 +1,8 @@
+.edit-todo-container {
+  border: 1px solid #e4e6e6;
+  border-radius: 5px;
+  box-shadow: 0 .125rem .375rem rgba(0,0,0,.2);;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+

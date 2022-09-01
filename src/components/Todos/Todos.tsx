@@ -5,6 +5,7 @@ import AddTodoButton from "./components/AddTodoButton/AddTodoButton"
 import TodoItem from "./components/TodoItem/TodoItem";
 import { toggleTodo } from "./todoSlice";
 import { TodoProps } from "../../types/types";
+import "./Todos.css"
 
 interface TodosProps {
   todos: TodoProps[],

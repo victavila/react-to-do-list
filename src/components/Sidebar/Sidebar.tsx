@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import AddProject from "./AddProject/AddProject";
 import { FaInbox, FaRegCalendar, FaRegCalendarAlt, FaTag, FaChevronDown, FaChevronRight, FaCircle } from "react-icons/fa";
-import { VscAdd } from "react-icons/vsc";
+import { VscAdd, VscTrash, VscEdit } from "react-icons/vsc";
 import "./Sidebar.css"
 
 const Sidebar = () => {
@@ -62,11 +62,17 @@ const Sidebar = () => {
           :<ul>
             {projects.map(project => (
               <Link key={project.id} to={`/${project.id}`}>
-                <li>
-                  <span>
-                    <FaCircle className="project-icon" />
-                  </span>
-                  <span>{project.name}</span>
+                <li className="project-row">
+                  <div className="project-info">
+                    <span>
+                      <FaCircle className="project-icon" />
+                    </span>
+                    <span>{project.name}</span>
+                  </div>
+                  <div className="project-icons">
+                    <VscTrash className="project-delete" />
+                    <VscEdit className="project-edit" />
+                  </div>
                 </li>
               </Link>
             ))}

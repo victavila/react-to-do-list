@@ -93,3 +93,24 @@ li {
 .plus {
   font-size: .8rem;
 }
+
+.project-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-icons {
+  display: none;
+}
+
+.project-icons {
+  color: #808080;
+}
+
+.project-row:hover > .project-icons {
+  display: block;
+}
+
+.project-delete {
+  padding-right: .5rem;
+}

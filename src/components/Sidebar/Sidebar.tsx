@@ -6,6 +6,7 @@ import { VscAdd, VscTrash, VscEdit } from "react-icons/vsc";
 import "./Sidebar.css"
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { ProjectModalContext } from "../../contexts/ProjectModalContext";
+import { EditProjectContext } from "../../contexts/EditProjectContext";
 
 interface ProjectContextProps {
   selectedProject: string;
@@ -16,11 +17,21 @@ interface ProjectModalContextProps {
   setProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+interface EditProjectContextProps {
+  setEditProjectOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 const Sidebar = () => {
   const projects = useAppSelector(state => state.projects);
   const [projectListOpen, setProjectListOpen] = useState(false);
   const {selectedProject, setSelectedProject} = useContext(ProjectContext) as ProjectContextProps;
   const { setProjectModalOpen } = useContext(ProjectModalContext) as ProjectModalContextProps;
+  const { setEditProjectOpen } = useContext(EditProjectContext) as EditProjectContextProps;
+
+  const handleProjectEdit = () => {
+    setEditProjectOpen(true);
+    setProjectModalOpen(true);
+  }
 
   
   
@@ -95,7 +106,7 @@ const Sidebar = () => {
                   </div>
                   <div className="project-icons">
                     <VscTrash className="project-delete" />
-                    <VscEdit className="project-edit" />
+                    <VscEdit className="project-edit" onClick={() => handleProjectEdit()} />
                   </div>
                 </li>
               </Link>

@@ -1,8 +1,8 @@
 import { FormEvent, ChangeEvent, useState, useContext } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { addProject } from './projectSlice';
 import "./AddProject.css";
-import { ProjectModalContext } from '../../../contexts/ProjectModalContext';
+import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 
 interface ProjectModalContextProps {
   setProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>

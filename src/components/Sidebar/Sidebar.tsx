@@ -1,26 +1,26 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
-import AddProject from "./AddProject/AddProject";
 import { FaInbox, FaRegCalendar, FaRegCalendarAlt, FaTag, FaChevronDown, FaChevronRight, FaCircle } from "react-icons/fa";
 import { VscAdd, VscTrash, VscEdit } from "react-icons/vsc";
 import "./Sidebar.css"
 import { ProjectContext } from "../../contexts/ProjectContext";
+import { ProjectModalContext } from "../../contexts/ProjectModalContext";
 
 interface ProjectContextProps {
   selectedProject: string;
   setSelectedProject: React.Dispatch<React.SetStateAction<string>>
 }
 
+interface ProjectModalContextProps {
+  setProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 const Sidebar = () => {
   const projects = useAppSelector(state => state.projects);
-  const [formVisibility, setFormVisibility] = useState(false);
-  const [disable, setDisable] = useState(false);
+  const [projectListOpen, setProjectListOpen] = useState(false);
   const {selectedProject, setSelectedProject} = useContext(ProjectContext) as ProjectContextProps;
-
-  const toggleVisibility = () => {
-    setFormVisibility(!formVisibility);
-  }
+  const { setProjectModalOpen } = useContext(ProjectModalContext) as ProjectModalContextProps;
 
   
   
@@ -74,12 +74,12 @@ const Sidebar = () => {
           </Link>
         </ul>
         <div className="nav-projects">
-          <h3 className="nav-project-header" onClick={() => {setDisable(!disable)}}><span>
-            {disable ? 
+          <h3 className="nav-project-header" onClick={() => {setProjectListOpen(!projectListOpen)}}><span>
+            {projectListOpen ? 
             <FaChevronRight className="chevron-icon" /> 
             : <FaChevronDown className="chevron-icon" />}
             </span><span>Projects</span></h3>
-          {disable ? <></> 
+          {projectListOpen ? <></> 
           :<ul>
             {projects.map(project => (
               <Link key={project.id} to={`/${project.id}`}>
@@ -105,8 +105,7 @@ const Sidebar = () => {
       </div>
         
       <div className="nav-footer">
-        {formVisibility ? <AddProject toggleVisibility={toggleVisibility} />: <></>}
-        <button className="add-project" onClick={toggleVisibility}><span className="plus"><VscAdd /></span> Add Project</button>
+        <button className="add-project" onClick={() => setProjectModalOpen(true)}><span className="plus"><VscAdd /></span> Add Project</button>
       </div>
     </nav>
   )

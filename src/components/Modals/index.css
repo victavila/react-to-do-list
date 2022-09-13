@@ -1,4 +1,4 @@
-.todo-modal {
+.todo-modal, .project-modal {
   z-index: 50;
   position: fixed;
   top: 0;

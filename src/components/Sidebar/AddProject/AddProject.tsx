@@ -1,15 +1,17 @@
-import { FormEvent, ChangeEvent, useState } from 'react';
+import { FormEvent, ChangeEvent, useState, useContext } from 'react';
 import { useAppDispatch } from '../../../app/hooks';
 import { addProject } from './projectSlice';
 import "./AddProject.css";
+import { ProjectModalContext } from '../../../contexts/ProjectModalContext';
 
-interface FormProps {
-  toggleVisibility: () => void
+interface ProjectModalContextProps {
+  setProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddProject = ({ toggleVisibility }: FormProps) => {
+const AddProject = () => {
   const dispatch = useAppDispatch();
   const [text, setText] = useState("");
+  const { setProjectModalOpen } = useContext(ProjectModalContext) as ProjectModalContextProps;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -19,7 +21,7 @@ const AddProject = ({ toggleVisibility }: FormProps) => {
     };
     dispatch(addProject(text));
     setText("");
-    toggleVisibility();
+    setProjectModalOpen(false);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -28,7 +30,7 @@ const AddProject = ({ toggleVisibility }: FormProps) => {
 
   const handleCancel = (): void => {
     setText("");
-    toggleVisibility();
+    setProjectModalOpen(false);
   }
   
   return (

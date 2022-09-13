@@ -9,7 +9,7 @@ const Inbox = () => {
   return (
     <div className="project">
       <h2>Inbox</h2>
-      <Todos todos={visibleTodos} date="" disable={false} project="inbox" />
+      <Todos todos={visibleTodos} date="" disable={false} />
     </div>
   )
 }

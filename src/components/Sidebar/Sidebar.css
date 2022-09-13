@@ -114,3 +114,8 @@ li {
 .project-delete {
   padding-right: .5rem;
 }
+
+.selected {
+  border-radius: .325rem;
+  background-color: #ececec;
+}

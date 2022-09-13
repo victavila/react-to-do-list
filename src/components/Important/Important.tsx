@@ -9,7 +9,7 @@ const Important = () => {
   return (
     <div className="project">
       <h2>Important</h2>
-      <Todos todos={visibleTodos} date="" disable={true} project="inbox" />
+      <Todos todos={visibleTodos} date="" disable={true} />
     </div>
   )
 }

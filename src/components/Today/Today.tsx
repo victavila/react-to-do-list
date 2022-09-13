@@ -10,7 +10,7 @@ const Today = () => {
   return (
     <div className="project">
       <h2>Today</h2>
-      <Todos todos={todos} date={today} disable={false} project="inbox" />
+      <Todos todos={todos} date={today} disable={false} />
     </div>
   )
 }

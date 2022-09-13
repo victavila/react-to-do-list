@@ -1,25 +1,36 @@
-import { useState } from "react"
-import AddTodo from "./components/AddTodo/AddTodo";
+import { useContext } from "react"
 import { useAppDispatch } from "../../app/hooks";
 import AddTodoButton from "./components/AddTodoButton/AddTodoButton"
 import TodoItem from "./components/TodoItem/TodoItem";
 import { toggleTodo } from "./todoSlice";
 import { TodoProps } from "../../types/types";
 import "./Todos.css"
+import { TodoModalContext } from "../../contexts/TodoModalContext";
+import { DateContext } from "../../contexts/DateContext";
 
 interface TodosProps {
   todos: TodoProps[],
   date: string,
   disable: boolean,
-  project: string,
 }
 
-const Todos = ({ todos, date, disable, project }: TodosProps) => {
-  const dispatch = useAppDispatch();
-  const [visibleForm, setVisibleForm] = useState(false);
+interface TodoModalProps {
+  setTodoModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-  const toggleFormVisibility = () => {
-    setVisibleForm(!visibleForm);
+interface DateProps {
+  setInitialDate: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Todos = ({ todos, date, disable }: TodosProps) => {
+  const dispatch = useAppDispatch();
+  const { setTodoModalOpen } = useContext(TodoModalContext) as TodoModalProps;
+  const { setInitialDate } = useContext(DateContext) as DateProps;
+
+  const handleClick = () => {
+    setTodoModalOpen(true);
+    setInitialDate(date);
+
   }
 
   
@@ -34,7 +45,7 @@ const Todos = ({ todos, date, disable, project }: TodosProps) => {
           />
         ))}
       </ul>
-      {disable ? <></> : visibleForm ? <AddTodo handleClick={toggleFormVisibility} initialDate={date} project={project}  />:<AddTodoButton handleClick={toggleFormVisibility} />}
+      {disable ? <></> : <AddTodoButton handleClick={() => {handleClick()}} />}
     </div>
   )
 }

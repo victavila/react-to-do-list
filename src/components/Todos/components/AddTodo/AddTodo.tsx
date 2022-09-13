@@ -1,25 +1,36 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useContext } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { addTodo } from "../../todoSlice";
 import { FaTag, FaRegFlag, FaFlag } from "react-icons/fa";
 import { Priority } from "../../../../types/types";
 import "./AddTodo.css";
+import { TodoModalContext } from "../../../../contexts/TodoModalContext";
+import { DateContext } from "../../../../contexts/DateContext";
 
 interface ButtonProperties {
-  handleClick: () => void,
-  initialDate: string,
   project: string,
 }
 
-const AddTodo = ({ handleClick, initialDate, project }: ButtonProperties) => {
+interface TodoModalProps {
+  todoModalOpen: boolean,
+  setTodoModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+interface DateProps {
+  initialDate: string;
+}
+
+const AddTodo = ({ project }: ButtonProperties) => {
   const dispatch = useAppDispatch();
   const projects = [...useAppSelector(state => state.projects)];
   const inboxProject = {name: "Inbox", id: "inbox"};
   const [text, setText] = useState("");
   const [projectId, setProjectId] = useState(project);
   const [isImportant, setIsImportant] = useState(false);
+  const { initialDate } = useContext(DateContext) as DateProps;
   const [priority, setPriority] = useState<Priority>(Priority.NONE);
   const [date, setDate] = useState(initialDate);
+  const { setTodoModalOpen } = useContext(TodoModalContext) as TodoModalProps;
 
   projects.push(inboxProject);
 
@@ -34,12 +45,12 @@ const AddTodo = ({ handleClick, initialDate, project }: ButtonProperties) => {
     };
     dispatch(addTodo({text, projectId, isImportant, priority, date}));
     setText("");
-    handleClick();
+    setTodoModalOpen(false);
   }
 
   const handleCancel = () => {
     setText("");
-    handleClick();
+    setTodoModalOpen(false);
   }
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>): void => {

@@ -1,9 +1,4 @@
 .add-todo-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -150px;
-  margin-left: -250px;
   border-radius: 10px;
   width: 450px;
   background-color: #fff;

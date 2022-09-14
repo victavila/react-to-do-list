@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { FaInbox, FaRegCalendar, FaRegCalendarAlt, FaTag, FaChevronDown, FaChevronRight, FaCircle } from "react-icons/fa";
 import { VscAdd, VscTrash, VscEdit } from "react-icons/vsc";
 import "./Sidebar.css"
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { ProjectModalContext } from "../../contexts/ProjectModalContext";
 import { EditProjectContext } from "../../contexts/EditProjectContext";
+import { deleteProject } from "../AddProject/projectSlice";
+import { deleteProjectTodos } from "../Todos/todoSlice";
 
 interface ProjectContextProps {
   selectedProject: string;
@@ -22,6 +24,7 @@ interface EditProjectContextProps {
 }
 
 const Sidebar = () => {
+  const dispatch = useAppDispatch();
   const projects = useAppSelector(state => state.projects);
   const [projectListOpen, setProjectListOpen] = useState(false);
   const {selectedProject, setSelectedProject} = useContext(ProjectContext) as ProjectContextProps;
@@ -31,9 +34,12 @@ const Sidebar = () => {
   const handleProjectEdit = () => {
     setEditProjectOpen(true);
     setProjectModalOpen(true);
-  }
+  };
 
-  
+  const handleProjectDelete = () => {
+    dispatch(deleteProjectTodos(selectedProject));
+    dispatch(deleteProject(selectedProject));
+  }
   
   return (
     <nav className="sidebar">
@@ -93,7 +99,7 @@ const Sidebar = () => {
           {projectListOpen ? <></> 
           :<ul>
             {projects.map(project => (
-              <Link key={project.id} to={`/${project.id}`}>
+              <Link key={project.id} to={`/project/${project.id}`}>
                 <li
                 className={selectedProject === project.id ? "project-row selected" : "project-row"}
                 onClick={() => {setSelectedProject(project.id)}}
@@ -105,7 +111,7 @@ const Sidebar = () => {
                     <span>{project.name}</span>
                   </div>
                   <div className="project-icons">
-                    <VscTrash className="project-delete" />
+                    <VscTrash className="project-delete" onClick={() => handleProjectDelete()} />
                     <VscEdit className="project-edit" onClick={() => handleProjectEdit()} />
                   </div>
                 </li>

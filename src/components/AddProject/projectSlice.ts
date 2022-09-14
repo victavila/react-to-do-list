@@ -21,10 +21,13 @@ const projectSlice = createSlice({
       if (project) {
         project.name = action.payload.name;
       }
+    },
+    deleteProject(state, action: PayloadAction<string>) {
+      state.splice(state.findIndex(project => project.id === action.payload), 1);
     }
   }
 })
 
-export const { addProject, updateProject } = projectSlice.actions;
+export const { addProject, updateProject, deleteProject } = projectSlice.actions;
 
 export default projectSlice.reducer;

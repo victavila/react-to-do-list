@@ -48,10 +48,21 @@ const todoSlice = createSlice({
         todo.priority = action.payload.priority;
         todo.date = action.payload.date;
       }
+    },
+    deleteProjectTodos(state, action: PayloadAction<string>) {
+      const removalIndices: number[] = [];
+      state.forEach((todo, id) => {
+        if (todo.projectId === action.payload) {
+          removalIndices.push(id);
+        }
+      })
+      for (let i = removalIndices.length-1; i >= 0; i--) {
+        state.splice(removalIndices[i], 1);
+      }
     }
   }
 })
 
-export const { addTodo, toggleTodo, deleteTodo, updateTodo } = todoSlice.actions;
+export const { addTodo, toggleTodo, deleteTodo, updateTodo, deleteProjectTodos } = todoSlice.actions;
 
 export default todoSlice.reducer;
